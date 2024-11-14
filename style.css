@@ -1,0 +1,402 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+#map { 
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#center {
+    width: 13vh;
+    filter: drop-shadow(1px 3px 3px  #313131);
+    position: absolute;
+    z-index: 2;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.user {
+    top: 1px;
+    padding: 3px 10px 3px 3px;
+    position: absolute;
+    z-index: 2;
+    right: -30px;
+    margin-right: 45px;
+    background: #670a0a;
+    border-radius: 20px;
+    color: #FFFFFF;
+    border: none;
+    font-size: 16px;
+}
+
+.user img {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #e2e257;
+    border-radius: 50%;
+}
+
+#logOutBtn, #changeDisplayBtn {
+    display: none;
+    position: absolute;
+    background-color: #e2e257;
+    min-width: 1vw;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1.5);
+    z-index: 3;
+    border-radius: 20px;
+    right: 15px;
+    top: 56px;
+    margin-top: 18px;
+}
+
+#changeDisplayBtn {
+    top: 23px;
+}
+
+#displayPicture {
+    display: none;
+}
+
+#logOutBtn a, label{
+    color: black;
+    padding: 5px 8px;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+}
+
+label {
+    margin-bottom: 0;
+}
+
+#logOutBtn img, #changeDisplayBtn img {
+    width: 20px;
+}
+
+#logOutBtn a:hover, label:hover {
+    border: 1px solid #670a0a;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.show {
+    display: block;
+}
+
+#markers, #viewed, #X {
+    max-width: 16vw;
+    padding: 5px;
+    margin: 10px 5px;
+    top: 10px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 2;
+}
+ 
+#markers {
+    left: 3vw;
+    background: #670a0a; 
+    border: 2px solid #e2e257;
+}
+
+#viewed {
+    left: 3vw;
+    margin-left: 48px;
+    background: #670a0a; 
+    border: 2px solid #e2e257;
+}
+
+#X {
+    left: 3vw;
+    margin-left: 91px;
+    background: #670a0a; 
+    border: 2px solid #e2e257;
+}
+ 
+#markersIcon, #viewedIcon, #XIcon {
+    margin-right: 3px; 
+}
+
+
+#markersIcon img, #viewedIcon img, #XIcon img {
+    width: 20px;
+}
+
+#markersBtn, #viewedBtn, #XBtn {
+    width: 15px;
+    padding: 1px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* PUP X Feed */
+.PUP-X-display {
+    position: absolute;
+    top: 9vh;
+    left: 3vw;
+    z-index: 2;    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+    display: none;
+}
+
+/* Leaflet */
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    background: #670a0a !important; 
+    color: #FFFFFF !important;  
+}
+
+.leaflet-control-zoom-in {
+    margin-bottom: 5px;
+}
+
+.leaflet-control-zoom {
+    margin-bottom: 100px !important;
+    margin-right: 20px !important;
+}
+
+.leaflet-popup {
+    border: 2.5px solid #bb0e0e;
+    border-radius: 11px;
+}
+
+.leaflet-popup-content {
+    width: 50vw;
+    max-height: 32vh;
+    height: auto;
+    overflow-y: scroll;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaflet-popup-content img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+}
+
+.leaflet-popup-content h4 {
+    font-weight: bold;
+}
+
+.leaflet-popup-content .bldgName {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.leaflet-routing-container {
+    top: 16.5vh !important;
+    margin-right: 20px !important;
+    max-width: 50vw;
+    border: 2px solid #670a0a !important;
+    overflow-x: auto;
+}
+
+.leaflet-routing-alt td {
+    font-size: 12px !important;
+    padding-left: 7px !important;
+}
+
+.leaflet-container {
+    top: -20px;
+}
+ 
+
+/* Sidebar Navigation */
+.sidebar {
+    height: 100%;
+    width: 0; 
+    position: fixed; 
+    z-index: 3; 
+    top: 20px;
+    left: 30px;
+    height: 92vh;
+    overflow-y: scroll;
+    background: rgba(102, 10, 10, 0.712);
+    overflow-x: hidden; 
+    overflow-y: auto;
+    padding-top: 5px; 
+    transition: 0.5s;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+}
+
+.sidebar h4 {
+    padding-left: 25px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFFFFF;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a {
+    padding-left: 25px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #e2e257;
+    background: #670a0a33;
+    font-weight: 600;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+}
+
+.sidebar .closebtn:hover {
+    background: none;
+}
+
+/* Recently Viewed Markers */
+.recentlyViewed {
+    height: 100%;
+    width: 0; 
+    position: fixed; 
+    z-index: 3; 
+    top: 20px;
+    left: 30px;
+    height: 92vh;
+    overflow-y: scroll;
+    background: rgba(102, 10, 10, 0.712);
+    overflow-x: hidden; 
+    overflow-y: auto;
+    padding-top: 5px; 
+    transition: 0.5s;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+}
+
+.recentlyViewed h4 {
+    padding-left: 25px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    display: block;
+    transition: 0.3s;
+}
+
+.recentlyViewed a {
+    padding-left: 25px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    display: block;
+    transition: 0.3s;
+}
+
+.recentlyViewed a:hover {
+    color: #e2e257;
+    background: #670a0a33;
+    font-weight: 600;
+}
+
+.recentlyViewed .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+}
+
+.recentlyViewed .closebtn:hover {
+    background: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 0px;
+    margin-right: 100px;
+   }
+   
+   ::-webkit-scrollbar-button {
+    width: 10px;
+    height: 0px;
+   }
+   
+   ::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border: 5px none;
+    border-radius: 3px;
+   }
+   
+   ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border: 5px none;
+    border-radius: 2px;
+   }
+   
+   ::-webkit-scrollbar-corner {
+    background: #FFFFFF;
+   }
+   
+   /* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: white #e2e257;
+   }
+   
+   /* Works on Chrome, Edge, and Safari */
+   *::-webkit-scrollbar {
+    width: 12px;
+   }
+   
+   *::-webkit-scrollbar-track {
+    background: white
+   }
+   
+   *::-webkit-scrollbar-thumb {
+    background-color: #e2e257;
+    border-radius: 20px;
+    border: 3px solid #e2e257
+   }
+   
+@media screen and (max-width: 800px) {
+    .PUP-X-display {
+        top: 60px;
+        left: 20px;
+        max-width: 250px !important;
+        height: auto !important;
+    }
+
+    .sidebar {
+        padding-top: 15px;
+        height: auto;
+    }
+
+    .sidebar a {
+        font-size: 16px;
+    }
+    
+    .recentlyViewed {
+        padding-top: 15px;
+    }
+
+    .recentlyViewed a {
+        font-size: 16px;
+    }
+
+    .leaflet-routing-container {
+        top: 16vh !important;
+        width: auto;
+    }
+}

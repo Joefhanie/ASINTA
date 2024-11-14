@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Guide</title>
+
+    <link rel="icon" type="image/x-icon" href="images\icon.ico">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Leaflet CSS  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
+    <!-- Leaflet JS  -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+    <!-- Leaflet Routing Machine  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <img id="center" src="./images/asinta-recenter.png" alt="ASINTA Recenter Button"><br/>
+        <div class="dropdown">
+            <button onclick="dropDown()" class="user"><img id="displayPic" src="./images/icons8-user-50.png"> Hi, <span id="displayUsername"></span>!</button>
+            <div id="logOutBtn" class="userDropdown">
+                <a href="logout.php"><img src="images/icons8-log-out-48.png" alt="log out"/>Log Out</a>
+            </div>
+            <div id="changeDisplayBtn" class="userDropdown">
+                <label for="displayPicture">Change Display Picture</label>
+                <input type="file" accept="image/jpeg, image/png, image/jpg" id="displayPicture">
+            </div>
+        </div>
+        <div class="btnContainer">   
+            <button id="viewed" onclick="openRecent()">
+                <div id="viewedIcon">
+                    <i><img id="viewedBtn" src="images/icons8-eye-50.png" alt="markers list"/></i>
+                </div>
+                <div class="btnText" id="viewedText" title="Recently Viewed Places"></div>
+            </button>
+            <button id="markers" onclick="openNav()">
+                <div id="markersIcon">
+                    <i><img id="markersBtn" src="images/icons8-menu-64.png" alt="markers list"/></i>
+                </div>
+                <div class="btnText" id="markersText" title="Markers"></div>
+            </button>
+             <button id="logOut" style="display: none;">
+             </button>                                 
+        </div>
+    </div>
+    <div id="map"></div>
+    <div class="PUP-X">
+        <div class="PUP-X-btn">
+            <button id="X" onclick="openFeed()">
+                <div id="XIcon">
+                    <i><img id="XBtn" src="images/icons8-twitter-logo-50.png" alt="PUP X Updates"/></i>
+                </div>
+                <div class="btnText" id="XText" title="PUP Updates"></div>
+            </button>
+        </div>
+        <div id="PUPXFeed" class="PUP-X-display">
+            <a class="twitter-timeline" data-width="350" data-height="400" href="https://twitter.com/ThePUPOfficial?ref_src=twsrc%5Etfw">Tweets by ThePUPOfficial</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    <div id="sidebarContainer">
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <h4>Markers</h4>
+            <a href="#" id="link-sculpture">Sculpture</a>
+            <a href="#" id="link-entrance">Main Gate</a>
+            <a href="#" id="link-guardhouse">Guard House</a>
+            <a href="#" id="link-pylon">Pylon</a>
+            <a href="#" id="link-vic">Visitor Information Center</a>
+            <a href="#" id="link-oval">Track and Football Oval</a>
+            <a href="#" id="link-community">Community Building</a>
+            <a href="#" id="link-tennis">Tennis Court</a>
+            <a href="#" id="link-court">Outdoor Basketball and Volleyball Court</a>
+            <a href="#" id="link-souvenir">PUP Souvenir Shop</a>
+            <a href="#" id="link-mabini">Apolinario Mabini Shrine</a>
+            <a href="#" id="link-grandstand">Grandstand</a>
+            <a href="#" id="link-obelisk">PUP Obelisk</a>
+            <a href="#" id="link-freedomPark">Freedom Park</a>
+            <a href="#" id="link-lagoon">PUP Lagoon</a>
+            <a href="#" id="link-ampi">Amphitheater</a>
+            <a href="#" id="link-dome">Main Building</a>
+            <a href="#" id="link-north">North Wing</a>
+            <a href="#" id="link-west">West Wing</a>
+            <a href="#" id="link-east">East Wing</a>
+            <a href="#" id="link-south">South Wing</a>
+            <a href="#" id="link-chapel">Interfaith Chapel</a>
+            <a href="#" id="link-linear">PUP Linear Park</a>
+            <a href="#" id="link-nfsb">Nutrition and Food Science Building</a>
+            <a href="#" id="link-ferry">PUP Sta. Mesa Ferry Station</a>
+            <a href="#" id="link-canteen">Student Canteen</a>
+            <a href="#" id="link-charlie">Charlie Del Rosario Hall</a>
+            <a href="#" id="link-labHigh">PUP Laboratory High School</a>
+            <a href="#" id="link-nalrc">Ninoy Aquino Learning Resource Center</a>
+            <a href="#" id="link-tank">R.C. Overhead Water Tank</a>
+            <a href="#" id="link-gym">Gymnasium and Sports Center</a>
+            <a href="#" id="link-pool">Swimming Pool</a>
+            <a href="#" id="link-alumni">Tahanan ng Alumni</a>
+            <a href="#" id="link-pe">Physical Education Building</a>
+            <a href="#" id="link-coc">PUP College of Communication Building</a>
+            <a href="#" id="link-theater">PUP Theater</a>
+            <a href="#" id="link-cea">PUP College of Engineering and Architecture Building</a>
+            <a href="#" id="link-condotel">PUP Condotel</a>
+        </div>
+        <div id="viewedSidebar" class="recentlyViewed">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeRecent()">&times;</a>
+            <h4>Recently Viewed</h4>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
